@@ -1,0 +1,35 @@
+<div class="w3l_banner_nav_right">
+  <!-- login -->
+  <div class="w3_login">
+    <h3>Add Products</h3>
+    <div class="w3_login_module">
+      <div class="module form-module">
+        <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+          <div class="tooltip">Click Me</div>
+        </div>
+        <div class="form">
+          <h2>Create Products</h2>
+          <h4>{{msg}}</h4>
+          <form (submit)="createProducts(f)" #f="ngForm">
+            <select name="catId" ngModel>
+              <option value="">Please select Categories</option>
+              <option *ngFor="let cat of categories" value="{{cat._id}}">
+                {{cat.catName}}
+              </option>
+            </select> <br><br>
+            <input type="text" name="pdtName" ngModel placeholder="Product Name">
+            <input type="number" name="pdtPrice" ngModel placeholder="Product Price"><br><br>
+            <input type="file" name="pdtImg" ngModel (change)="selectImg($event)" multiple><br><br>
+            <textarea name="pdtDesc" ngModel cols="30" rows="5"></textarea>
+            <input type="submit" value="Add Products">
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <!-- //login -->
+</div>
+
+<div class="clearfix"></div>

@@ -1,0 +1,90 @@
+<div class="w3l_banner_nav_right">
+  <!-- login -->
+  <div class="w3_login">
+    <h3>Sign In & Sign Up</h3>
+    <div class="w3_login_module">
+      <div class="module form-module">
+        <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+          <div class="tooltip">Click Me</div>
+        </div>
+        <div class="form">
+          <h2>Login to your account</h2>
+          <h4>{{msg}}</h4>
+          <!-- <form action="#" method="post">
+                          <input type="text" name="Username" placeholder="Username" required=" ">
+                          <input type="password" name="Password" placeholder="Password" required=" ">
+                          <input type="submit" value="Login">
+                        </form> -->
+          <form [formGroup]="loginForm" (submit)='doLogin()'>
+            <div>
+              <div class="form-group">
+                <input type="text" name="Username" formControlName="Username" placeholder="Username">
+              </div>
+              <p class="alert alert-danger" *ngIf="loginForm.get('Username').touched && loginForm.get('Username').invalid">
+                Please enter Username
+              </p>
+              <div class="form-group">
+                <input type="password" name="Password" formControlName="Password" placeholder="Password">
+              </div>
+              <p class="alert alert-danger" *ngIf="loginForm.get('Password').touched && loginForm.get('Password').invalid">
+                Please enter Password
+              </p>
+            </div>
+            <!-- <button type="submit" class="btn btn-primary" [disabled]='loginForm.invalid'>Login</button> -->
+            <input type="submit" class="btn btn-success" value="Login" [disabled]='loginForm.invalid'>
+          </form>
+
+        </div>
+        <div class="form">
+          <h2>Create an account</h2>
+          <h4>{{msg}}</h4>
+          <!-- <form action="#" method="post">
+                          <input type="text" name="Username" placeholder="Username" required=" ">
+                          <input type="password" name="Password" placeholder="Password" required=" ">
+                          <input type="email" name="Email" placeholder="Email Address" required=" ">
+                          <input type="text" name="Phone" placeholder="Phone Number" required=" ">
+                          <input type="submit" value="Register">
+                        </form> -->
+          <form (submit)="doRegister(regF)" #regF="ngForm">
+            <input type="text" name="Username" ngModel required minlength="3" placeholder="Username" #uname="ngModel">
+            <p class="alert alert-danger" *ngIf="((uname.touched || uname.dirty) && uname.errors?.required)">
+              Please enter username
+            </p>
+            <p class="alert alert-danger" *ngIf="uname.touched && uname.errors?.minlength">
+              Please enter minimum 3 characters
+            </p>
+
+            <input type="password" name="Password" ngModel required placeholder="Password"
+              #pword="ngModel">
+            <p class="alert alert-danger" *ngIf="((pword.touched || pword.dirty) && pword.errors?.required)">
+              Please enter password
+            </p>
+            <!-- <p class="alert alert-danger" *ngIf="pword.touched && pword.errors?.minlength">
+              Password must have minimum 8 characters
+            </p> -->
+
+            <input type="email" name="Email" ngModel email required placeholder="Email Address" #uemail="ngModel">
+            <p class="alert alert-danger" *ngIf = "(uemail.touched && uemail.invalid)">
+              Please enter valid email
+            </p>
+
+            <input type="text" name="Phone" ngModel required minlength="10" maxlength="10" placeholder="Phone Number"
+              #ph="ngModel">
+            <p class="alert alert-danger" *ngIf="((ph.touched || ph.dirty) && ph.errors?.required)">
+              Please enter Phone Number
+            </p>
+            <p class="alert alert-danger" *ngIf="(ph.touched && ph.errors?.minlength)">
+              Enter a valid Phone Number
+            </p>
+            <!-- <button type="submit" class="btn btn-primary" [disabled]='regF.invalid'>Register</button> -->
+            <input type="submit" class="btn btn-success" value="Register" [disabled]="regF.invalid">
+          </form>
+        </div>
+        <div class="cta"><a href="#">Forgot your password?</a></div>
+      </div>
+    </div>
+
+  </div>
+  <!-- //login -->
+</div>
+<div class="clearfix"></div>
